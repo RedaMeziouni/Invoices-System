@@ -92,7 +92,7 @@
 
 ## CLIENT_STATUS
 - [ ] ID
-- [ ] C_Status (xxxx)
+- [ ] C_Status (Active / Bloqued)
 
 # Logistic Paart
 
