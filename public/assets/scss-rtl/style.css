@@ -15150,7 +15150,7 @@ body {
       -ms-flex-pack: start;
           justify-content: flex-start;
   position: relative;
-  direction: rtl;
+  direction: ltr;
 }
 
 .main-body::before {
