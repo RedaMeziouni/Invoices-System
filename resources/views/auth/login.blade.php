@@ -1,7 +1,7 @@
 @extends('layouts.master2')
 
 @section('title')
-EAGLE7 - ERP
+Login
 @stop
 
 
