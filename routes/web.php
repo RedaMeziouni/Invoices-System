@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Take the User by default to the Login Page
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
