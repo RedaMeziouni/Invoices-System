@@ -18,11 +18,13 @@ Route::get('/', function () {
 });
 
 
-Auth::routes();
+// Auth::routes();
+
+// Disable Registration
+
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/{page}', 'AdminController@index');
-// Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
