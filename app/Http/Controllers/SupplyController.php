@@ -39,7 +39,13 @@ class SupplyController extends Controller
     public function store(Request $request)
     {
         //
-        return $request;
+        supply::create([
+            'supply_name' => $request->supply_name,
+            'section_id' => $request->section_id,
+            'description' => $request->description,
+        ]);
+        session()->flash('Add', 'User Added Succesfuly ');
+        return redirect('/supply');
     }
 
     /**
