@@ -1,7 +1,9 @@
 @extends('layouts.master')
+
 @section('title')
-Invoices
+Sections
 @stop
+
 @section('css')
 <!-- Internal Data table css -->
 <link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
@@ -11,52 +13,51 @@ Invoices
 <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 @endsection
+
 @section('page-header')
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Invoices</h4><span class="text-muted mt-1 tx-15 mr-2 mb-0">/ Invoices List</span>
+							<h4 class="content-title mb-0 my-auto">Settings</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Departments</span>
 						</div>
 					</div>
+					
 				</div>
 				<!-- breadcrumb -->
 @endsection
 @section('content')
 				<!-- row -->
 				<div class="row">
-				
-				<!-- <div class="row row-sm">
-					#### Make the table Smaller 
-				</div> -->
-
-					<!--div-->
+					<!-- Checkig befor Adding -->
+@if (session()->has('Add'))
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		<strong>{{ session()->get('Add') }}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+@endif
+					<!-- End Add Checking -->
+					<!-- Table -->
 					<div class="col-xl-12">
 						<div class="card mg-b-20">
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">Bordered Table</h4>
-									<i class="mdi mdi-dots-horizontal text-gray"></i>
+									<!-- Edit Button -->
+								<a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal" href="#modaldemo8">Add Departments</a>
 								</div>
-								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Bordered Table.. <a href="">Learn more</a></p>
+
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="example1" class="table key-buttons text-md-nowrap ">
+									<table id="example1" class="table key-buttons text-md-nowrap">
 										<thead>
 											<tr>
 												<th class="border-bottom-0">#</th>
-												<th class="border-bottom-0">Invoice Num</th>
-												<th class="border-bottom-0">Invoice</th>
-												<th class="border-bottom-0">Due Date</th>
-												<th class="border-bottom-0">Product</th>
 												<th class="border-bottom-0"> Departement</th>
-												<th class="border-bottom-0">Discount</th>
-												 <th class="border-bottom-0">Tax</th> 
-												<th class="border-bottom-0">T. value</th>
-												<th class="border-bottom-0">Total</th> 
-												<th class="border-bottom-0">Status</th>
 												<th class="border-bottom-0">Description</th>
+												<th class="border-bottom-0">Operations</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -65,14 +66,6 @@ Invoices
 												<td>System </td>
 												<td>Edinburgh</td>
 												<td>61</td> 
-												<td>2011/04/25</td>
-												<td>$320</td>
-												<td>Tiger Nixon</td>
-												<td>System Architect</td>
-												<td>Edinburgh</td>
-												<td>61</td>
-												<td>2011/04/25</td>
-												<td>$320</td>
 											</tr>
 
 										</tbody>
@@ -81,7 +74,41 @@ Invoices
 							</div>
 						</div>
 					</div>
-					<!--/div-->
+					<!-- Start pop up -->
+					<div class="modal" id="modaldemo8">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content modal-content-demo">
+					<div class="modal-header">
+						<h6 class="modal-title">Add Departement</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						<!-- The form -->
+						<form action="{{route('sections.store')}}" method="post">
+							{{csrf_field()}}
+						
+						<!-- Add Department -->
+						<div class="form-group">
+							<label for="exampleInputEmail1">Department Name</label>
+							<input type="text" class="form-control" name="section_name" id="section_name" required>
+						</div>
+
+						<!-- Description -->
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Description</label>
+							<textarea name="description" id="description" class="form-control" rows="3"></textarea>
+						</div>
+					</div>
+					<!-- Save and Exit buttons -->
+					<div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                    </div>
+					</form>
+					<!-- Form End ! -->
+				</div>
+			</div>
+		</div>
+					<!-- End pop up -->
 				</div>
 				<!-- row closed -->
 			</div>
@@ -107,6 +134,8 @@ Invoices
 <script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
+<!-- Internal Modal js-->
+<script src="{{URL::asset('assets/js/modal.js')}}"></script>
 <!--Internal  Datatable js -->
 <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
 @endsection

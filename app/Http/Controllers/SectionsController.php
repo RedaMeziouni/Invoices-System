@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\sections;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facedes\Auth;
 
 class SectionsController extends Controller
 {
@@ -15,6 +16,7 @@ class SectionsController extends Controller
     public function index()
     {
         //
+        return view('sections.sections');
     }
 
     /**
@@ -35,8 +37,47 @@ class SectionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        // Cecking for the department name
+        $b_exists = sections::where('section_name','=',$input['section_name'])->exists();
+
+        if($b_exists) {
+            session()->flash('Error', 'Already Exists');
+            return redirect('/sections');
+        } 
+        else {
+            sections::create([
+                'section_name' => $request->section_name,
+                'description' => $request->description,
+                // 'Created_by' => (Auth::user()->name)
+
+            ]);
+            session()->flash('Add', 'Department has been Added Succefuly ');
+            return redirect('/sections');
+        }
     }
+
+        // $validatedData = $request->validate([
+        //     'section_name' => 'required|unique:sections|max:255',
+        // ],[
+
+        //     'section_name.required' =>'Please Enter a name !',
+        //     'section_name.unique' =>'Name Already Exists !',
+
+
+        // ]);
+
+        //     sections::create([
+        //         'section_name' => $request->section_name,
+        //         'description' => $request->description,
+        //         'Created_by' => (Auth::user()->name),
+
+        //     ]);
+        //     session()->flash('Add', 'Department has been Added Succefuly ');
+        //     return redirect('/sections');
+
+        // }
 
     /**
      * Display the specified resource.
