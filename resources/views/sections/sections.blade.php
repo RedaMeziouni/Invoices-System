@@ -38,6 +38,16 @@ Sections
 		</button>
 	</div>
 @endif
+
+<!-- Checking for error -->
+@if(session()->has('Error'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	<strong>{{ session()->get('Error') }}</strong>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+@endif
 					<!-- End Add Checking -->
 					<!-- Table -->
 					<div class="col-xl-12">
@@ -61,12 +71,19 @@ Sections
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>System </td>
-												<td>Edinburgh</td>
-												<td>61</td> 
-											</tr>
+											<!-- Number loop -->
+											<?php $i = 0; ?>
+											<!-- Get & Show data from DB -->
+											@foreach($sections as $s)
+											<!-- increment the $i -->
+											<?php $i++; ?>
+												<tr>
+													<td>{{ $i }}</td>
+													<td>{{ $s->section_name }}</td>
+													<td>{{ $s->description }}</td>
+													<td>{{ $s->section_name }}</td>
+												</tr>
+											@endforeach
 
 										</tbody>
 									</table>
