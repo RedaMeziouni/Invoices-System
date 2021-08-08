@@ -118,11 +118,11 @@ Sections
 															<a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
 																data-id="{{ $x->id }}" data-section_name="{{ $x->section_name }}"
 																data-description="{{ $x->description }}" data-toggle="modal"
-																href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
+																href="#exampleModal2" title="Edit"><i class="las la-pen"></i></a>
 												
 															<a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
 																data-id="{{ $x->id }}" data-section_name="{{ $x->section_name }}"
-																data-toggle="modal" href="#modaldemo9" title="حذف"><i
+																data-toggle="modal" href="#modaldemo9" title="Delete"><i
 																	class="las la-trash"></i></a>
 														
                                     				</td>
