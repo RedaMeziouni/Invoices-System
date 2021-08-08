@@ -30,5 +30,7 @@ Route::resource('invoices', 'InvoicesController');
 
 Route::resource('sections', 'SectionsController');
 
+Route::resource('supply', 'SupplyController');
+
 Route::get('/{page}', 'AdminController@index');
 
