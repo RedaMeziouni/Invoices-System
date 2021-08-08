@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\supply;
+use App\sections;
 use Illuminate\Http\Request;
 
 class SupplyController extends Controller
@@ -15,6 +16,8 @@ class SupplyController extends Controller
     public function index()
     {
         //
+        $sections = sections::all();
+        return view('supply.supply', compact('sections'));
     }
 
     /**
@@ -36,6 +39,7 @@ class SupplyController extends Controller
     public function store(Request $request)
     {
         //
+        return $request;
     }
 
     /**

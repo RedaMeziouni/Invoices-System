@@ -34,3 +34,5 @@ Route::resource('supply', 'SupplyController');
 
 Route::get('/{page}', 'AdminController@index');
 
+
+
