@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\sections;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facedes\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class SectionsController extends Controller
 {
@@ -50,7 +50,7 @@ class SectionsController extends Controller
             sections::create([
                 'section_name' => $request->section_name,
                 'description' => $request->description,
-                // 'Created_by' => (Auth::user()->name)
+                'Created_by' => (Auth::user()->name)
 
             ]);
             session()->flash('Add', 'Department has been Added Succefuly ');
