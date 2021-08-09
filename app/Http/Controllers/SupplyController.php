@@ -17,7 +17,8 @@ class SupplyController extends Controller
     {
         //
         $sections = sections::all();
-        return view('supply.supply', compact('sections'));
+        $supply = supply::all();
+        return view('supply.supply', compact('sections', 'supply'));
     }
 
     /**
