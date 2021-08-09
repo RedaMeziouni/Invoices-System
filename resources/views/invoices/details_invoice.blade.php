@@ -229,7 +229,7 @@
                                                         style="text-align:center">
                                                         <thead>
                                                             <tr class="text-dark">
-                                                                <th scope="col">م</th>
+                                                                <th scope="col">#</th>
                                                                 <th scope="col"> File name</th>
                                                                 <th scope="col">Added By </th>
                                                                 <th scope="col">Adding Date</th>
@@ -316,7 +316,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Exit</button>
                         <button type="submit" class="btn btn-danger">Save</button>
                     </div>
                 </form>
