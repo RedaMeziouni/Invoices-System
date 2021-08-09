@@ -101,8 +101,12 @@ class SupplyController extends Controller
      * @param  \App\supply  $supply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(supply $supply)
+    public function destroy(Request $request)
     {
-        //
+        //Delete Items from SCM
+        $supply = supply::findOrFail($request->pro_id);
+        $supply->delete();
+        session()->flash('delete', 'تم حذف المنتج بنجاح');
+        return back();
     }
 }

@@ -227,7 +227,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="products/destroy" method="post">
+                    <form action="supply/destroy" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                         <div class="modal-body">
