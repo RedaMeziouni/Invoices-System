@@ -60,7 +60,7 @@ Invoices
 											<tr>
 												<th class="border-bottom-0">#</th>
 												<th class="border-bottom-0">Invoice Num</th>
-												<th class="border-bottom-0">Invoice</th>
+												<th class="border-bottom-0">Invoice Date</th>
 												<th class="border-bottom-0">Due Date</th>
 												<th class="border-bottom-0">Product</th>
 												<th class="border-bottom-0"> Departement</th>
@@ -73,20 +73,24 @@ Invoices
 											</tr>
 										</thead>
 										<tbody>
+											<?php $i = 0; ?>
+											@foreach ($invoices as $invoice)
+											<?php $i++; ?>
 											<tr>
-												<td>1</td>
-												<td>System </td>
-												<td>Edinburgh</td>
-												<td>61</td> 
-												<td>2011/04/25</td>
-												<td>$320</td>
-												<td>Tiger Nixon</td>
-												<td>System Architect</td>
-												<td>Edinburgh</td>
-												<td>61</td>
-												<td>2011/04/25</td>
-												<td>$320</td>
+												<td>{{ $i }}</td>
+												<td>{{ $invoice->invoice_number }} </td>
+												<td>{{ $invoice->invoice_Date }}</td>
+												<td>{{ $invoice->Due_date }}</td>
+												<td>{{ $invoice->product }}</td>
+												<td></td>
+												<td>{{ $invoice->Discount }}</td>
+												<td></td>
+												<td>{{ $invoice->Rate_VAT }}</td>
+												<td>{{ $invoice->Total }}</td>
+												<td>{{ $invoice->Value_VAT }}</td>
+												<td>{{ $invoice->note }}</td>
 											</tr>
+											@endforeach
 
 										</tbody>
 									</table>
