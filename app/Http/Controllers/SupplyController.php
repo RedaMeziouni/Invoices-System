@@ -45,7 +45,7 @@ class SupplyController extends Controller
             'section_id' => $request->section_id,
             'description' => $request->description,
         ]);
-        session()->flash('Add', 'User Added Succesfuly ');
+        session()->flash('Add', 'Company Added Succesfuly ');
         return redirect('/supply');
     }
 
@@ -91,7 +91,7 @@ class SupplyController extends Controller
        'section_id' => $id,
        ]);
 
-       session()->flash('Edit', 'تم تعديل المنتج بنجاح');
+       session()->flash('Edit', 'Company Edited Successfully');
        return back();
     }
 
@@ -106,7 +106,7 @@ class SupplyController extends Controller
         //Delete Items from SCM
         $supply = supply::findOrFail($request->pro_id);
         $supply->delete();
-        session()->flash('delete', 'تم حذف المنتج بنجاح');
+        session()->flash('delete', 'Company Deleted Successfully');
         return back();
     }
 }

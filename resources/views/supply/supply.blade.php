@@ -16,7 +16,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 @endsection
 @section('title')
-    المنتجات
+    Supply Chain
 @stop
 
 @section('page-header')
@@ -222,7 +222,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">حذف المنتج</h5>
+                        <h5 class="modal-title">Delete Company</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -231,13 +231,13 @@
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                         <div class="modal-body">
-                            <p>هل انت متاكد من عملية الحذف ؟</p><br>
+                            <p>? Are you sure </p><br>
                             <input type="hidden" name="pro_id" id="pro_id" value="">
                             <input class="form-control" name="product_name" id="product_name" type="text" readonly>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                            <button type="submit" class="btn btn-danger">تاكيد</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                            <button type="submit" class="btn btn-danger">Save</button>
                         </div>
                     </form>
                 </div>
