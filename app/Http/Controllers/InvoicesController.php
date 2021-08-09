@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\invoices;
+use App\sections; 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -26,6 +28,8 @@ class InvoicesController extends Controller
     public function create()
     {
         //
+        $sections = sections::all();
+        return view('invoices.add_invoice', compact('sections'));
     }
 
     /**
@@ -82,5 +86,11 @@ class InvoicesController extends Controller
     public function destroy(invoices $invoices)
     {
         //
+    }
+
+    public function getproducts($id)
+    {
+        $products = DB::table("supplies")->where("section_id", $id)->pluck("supply_name", "id");
+        return json_encode($products);
     }
 }
