@@ -119,10 +119,6 @@
                                                     data-target="#modaldemo9">Delete</button>
                                             
                                         </td>
-
-										<!-- new -->
-										
-										<!-- end new -->
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -133,8 +129,7 @@
         </div>
 
         <!-- add -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -148,10 +143,10 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1"> Company Name</label>
-                                <input type="text" class="form-control" id="Product_name" name="Product_name" required>
+                                <input type="text" class="form-control" id="supply_name" name="supply_name" required>
                             </div>
 
-                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">القسم</label>
+                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Departement</label>
                             <select name="section_id" id="section_id" class="form-control" required>
                                 <option value="" selected disabled> Select Departement</option>
                                 @foreach ($sections as $section)
@@ -167,7 +162,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Save</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
                         </div>
                     </form>
                 </div>
@@ -185,7 +180,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action='products/update' method="post">
+                    <form action='supply/update' method="post">
                         {{ method_field('patch') }}
                         {{ csrf_field() }}
                         <div class="modal-body">

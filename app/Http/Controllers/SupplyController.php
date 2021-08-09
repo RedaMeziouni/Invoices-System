@@ -78,9 +78,10 @@ class SupplyController extends Controller
      * @param  \App\supply  $supply
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, supply $supply)
+    public function update(Request $request)
     {
         //
+        return $request;
     }
 
     /**
