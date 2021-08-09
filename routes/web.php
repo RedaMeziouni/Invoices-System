@@ -34,6 +34,8 @@ Route::resource('supply', 'SupplyController');
 
 Route::get('/section/{id}', 'InvoicesController@getproducts');
 
+Route::get('/InvoicesDetails/{id}', 'InvoicesDetailsController@edit');
+
 Route::get('/{page}', 'AdminController@index');
 
 

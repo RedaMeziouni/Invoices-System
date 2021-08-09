@@ -82,12 +82,32 @@ Invoices
 												<td>{{ $invoice->invoice_Date }}</td>
 												<td>{{ $invoice->Due_date }}</td>
 												<td>{{ $invoice->product }}</td>
-												<td></td>
+
+												<!-- Normal Way -->
+												<!-- <td>{{ $invoice->section->section_name }}</td> -->
+
+												<!-- Best Practices -->
+												<td>
+													<a href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section->section_name }}</a>
+                                        		</td>
 												<td>{{ $invoice->Discount }}</td>
-												<td></td>
 												<td>{{ $invoice->Rate_VAT }}</td>
-												<td>{{ $invoice->Total }}</td>
 												<td>{{ $invoice->Value_VAT }}</td>
+												<td>{{ $invoice->Total }}</td>
+												<!-- Normal Way -->
+												<!-- <td>{{ $invoice->Status }}</td> -->
+
+												<!-- Styled Way -->
+												<td>
+                                            		@if ($invoice->Value_Status == 1)
+                                                		<span class="text-success">{{ $invoice->Status }}</span>
+                                            		@elseif($invoice->Value_Status == 2)
+                                                		<span class="text-danger">{{ $invoice->Status }}</span>
+                                            		@else
+                                                		<span class="text-warning">{{ $invoice->Status }}</span>
+                                            		@endif
+
+                                        		</td>
 												<td>{{ $invoice->note }}</td>
 											</tr>
 											@endforeach

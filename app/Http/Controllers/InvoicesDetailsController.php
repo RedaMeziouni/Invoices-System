@@ -58,6 +58,7 @@ class InvoicesDetailsController extends Controller
     public function edit(invoices_details $invoices_details)
     {
         //
+        echo 'Test';
     }
 
     /**
