@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\invoices_details;
 use Illuminate\Http\Request;
+use App\invoices;
+use App\invoice_attachments;
 
 class InvoicesDetailsController extends Controller
 {
@@ -55,10 +57,14 @@ class InvoicesDetailsController extends Controller
      * @param  \App\invoices_details  $invoices_details
      * @return \Illuminate\Http\Response
      */
-    public function edit(invoices_details $invoices_details)
+    public function edit($id)
     {
         //
-        echo 'Test';
+        $invoices = invoices::where('id',$id)->first();
+        $details  = invoices_Details::where('id_Invoice',$id)->get();
+        $attachments  = invoice_attachments::where('invoice_id',$id)->get();
+
+        return view('invoices.details_invoice',compact('invoices','details','attachments'));
     }
 
     /**
@@ -82,5 +88,21 @@ class InvoicesDetailsController extends Controller
     public function destroy(invoices_details $invoices_details)
     {
         //
+    }
+
+    public function get_file($invoice_number,$file_name)
+
+    {
+        $contents= Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
+        return response()->download( $contents);
+    }
+
+
+
+    public function open_file($invoice_number,$file_name)
+
+    {
+        $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
+        return response()->file($files);
     }
 }

@@ -62,7 +62,7 @@ Invoices
 												<th class="border-bottom-0">Invoice Num</th>
 												<th class="border-bottom-0">Invoice Date</th>
 												<th class="border-bottom-0">Due Date</th>
-												<th class="border-bottom-0">Product</th>
+												<th class="border-bottom-0">Company</th>
 												<th class="border-bottom-0"> Departement</th>
 												<th class="border-bottom-0">Discount</th>
 												 <th class="border-bottom-0">Tax</th> 
