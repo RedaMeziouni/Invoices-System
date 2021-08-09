@@ -283,6 +283,7 @@
 
 
     <script>
+		// Edit
         $('#edit_Product').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var Product_name = button.data('name')
@@ -296,7 +297,7 @@
             modal.find('.modal-body #pro_id').val(pro_id);
         })
 
-
+		// Delete
         $('#modaldemo9').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var pro_id = button.data('pro_id')

@@ -81,7 +81,18 @@ class SupplyController extends Controller
     public function update(Request $request)
     {
         //
-        return $request;
+       $id = sections::where('section_name', $request->section_name)->first()->id;
+
+       $supply = supply::findOrFail($request->pro_id);
+
+       $supply->update([
+       'supply_name' => $request->Product_name,
+       'description' => $request->description,
+       'section_id' => $id,
+       ]);
+
+       session()->flash('Edit', 'تم تعديل المنتج بنجاح');
+       return back();
     }
 
     /**
