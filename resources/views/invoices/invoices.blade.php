@@ -10,6 +10,8 @@ Invoices
 <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+<!--Internal   Notify -->
+<link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" /> 
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -23,6 +25,32 @@ Invoices
 				<!-- breadcrumb -->
 @endsection
 @section('content')
+
+<!-- Delete Notification -->
+@if (session()->has('delete_invoice'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "Invoice Deleted Succesfully",
+                    type: "success"
+                })
+            }
+
+        </script>
+@endif
+
+<!-- Updated Notification -->
+@if (session()->has('Status_Update'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "Invoice Updated Succesfully",
+                    type: "success"
+                })
+            }
+
+        </script>
+@endif
 				<!-- row -->
 				<div class="row">
 				
@@ -46,13 +74,7 @@ Invoices
                   
 
                 </div>
-							<div class="card-header pb-0">
-								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">Bordered Table</h4>
-									<i class="mdi mdi-dots-horizontal text-gray"></i>
-								</div>
-								<p class="tx-12 tx-gray-500 mb-2">Example of Valex Bordered Table.. <a href="">Learn more</a></p>
-							</div>
+							
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="example1" class="table key-buttons text-md-nowrap ">
@@ -116,10 +138,19 @@ Invoices
 														class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
 														type="button">  <i class="fas fa-caret-down ml-1"></i> Select </button>
 															<div class="dropdown-menu tx-13">
-														
+															<!-- Edit Invoice -->
 															<a class="dropdown-item"
 																href=" {{ url('edit_invoice') }}/{{ $invoice->id }}"> Edit Invoice
-																</a>
+															</a>
+
+															<!-- Delete Invoice -->
+															<a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
+                                                            data-toggle="modal" data-target="#delete_invoice"> Delete Invoice
+                                                            </a>
+
+															<!-- Updated Status -->
+															<a class="dropdown-item"
+                                                            href="{{ URL::route('Status_show', [$invoice->id]) }}"> Update Invoice</a>
 															</div>	
 													</div>	
 												</td>
@@ -131,8 +162,36 @@ Invoices
 								</div>
 							</div>
 						</div>
+
 					</div>
 					<!--/div-->
+					<!-- Delete Invoice -->
+    <div class="modal fade" id="delete_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete invoice</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <form action="{{ route('invoices.destroy', 'test') }}" method="post">
+                        {{ method_field('delete') }}
+                        {{ csrf_field() }}
+                </div>
+                <div class="modal-body">
+                    ? Are you sure
+                    <input type="hidden" name="invoice_id" id="invoice_id" value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+					<!-- End delete invoice -->
 				</div>
 				<!-- row closed -->
 			</div>
@@ -160,4 +219,18 @@ Invoices
 <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
 <!--Internal  Datatable js -->
 <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
+<!--Internal  Notify js -->
+<script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+
+<!-- Delete Invoices -->
+<script>
+        $('#delete_invoice').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var invoice_id = button.data('invoice_id')
+            var modal = $(this)
+            modal.find('.modal-body #invoice_id').val(invoice_id);
+        })
+
+</script>
 @endsection
