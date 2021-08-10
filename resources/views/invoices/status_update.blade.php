@@ -138,7 +138,7 @@
                                 <select class="form-control" id="Status" name="Status" required>
                                     <option selected="true" disabled="disabled">-- Select Status --</option>
                                     <option value="Paid">Paid</option>
-                                    <option value="In Progress"> In Progress</option>
+                                    <option value="Partial">Partial</option>
                                 </select>
                             </div>
 
