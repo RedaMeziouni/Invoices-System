@@ -70,6 +70,7 @@ Invoices
 												<th class="border-bottom-0">Total</th> 
 												<th class="border-bottom-0">Status</th>
 												<th class="border-bottom-0">Description</th>
+												<th class="border-bottom-0">Opearations</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -109,6 +110,19 @@ Invoices
 
                                         		</td>
 												<td>{{ $invoice->note }}</td>
+												<td>
+													<div class="dropdown">
+														<button aria-expanded="false" aria-haspopup="true"
+														class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
+														type="button">  <i class="fas fa-caret-down ml-1"></i> Select </button>
+															<div class="dropdown-menu tx-13">
+														
+															<a class="dropdown-item"
+																href=" {{ url('edit_invoice') }}/{{ $invoice->id }}"> Edit Invoice
+																</a>
+															</div>	
+													</div>	
+												</td>
 											</tr>
 											@endforeach
 
