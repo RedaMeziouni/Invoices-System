@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Notification;
 use App\invoices;
+use App\Notifications\AddInvoice;
 use App\sections; 
 use App\invoices_details;
 use App\invoice_attachments;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -97,9 +99,11 @@ class InvoicesController extends Controller
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
 
-        $user = User::get();
-        $invoices = invoices::latest()->first();
-        Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
+            $user = User::first();
+            // $user = User::get();
+            // $invoices = invoices::latest()->first();
+            // Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
+            Notification::send($user, new AddInvoice($invoice_id));
 
         session()->flash('Add', 'Invoice Added Succesfully');
         return back();
