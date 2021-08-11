@@ -9,6 +9,8 @@ use App\sections;
 use App\invoices_details;
 use App\invoice_attachments;
 use App\User;
+use App\Exports\InvoicesExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -278,5 +280,12 @@ class InvoicesController extends Controller
     {
         $invoices = invoices::where('id', $id)->first();
         return view('invoices.Print_invoice',compact('invoices'));
+    }
+
+    public function export()
+    {
+
+        return Excel::download(new InvoicesExport, 'invoices.xlsx');
+
     }
 }
