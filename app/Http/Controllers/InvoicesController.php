@@ -168,8 +168,12 @@ class InvoicesController extends Controller
         //
         $id = $request->invoice_id;
         $invoices = invoices::where('id', $id)->first();
-
         $Details = invoice_attachments::where('invoice_id', $id)->first();
+
+         $id_page =$request->id_page;
+
+
+        if (!$id_page == 2) {
 
         if (!empty($Details->invoice_number)) {
 
@@ -179,6 +183,15 @@ class InvoicesController extends Controller
         $invoices->forceDelete();
         session()->flash('delete_invoice');
         return redirect('/invoices');
+
+        }
+
+        else {
+
+            $invoices->delete();
+            session()->flash('archive_invoice');
+            return redirect('/Archive');
+        }
     }
 
     public function getproducts($id)

@@ -140,17 +140,23 @@ Invoices
 															<div class="dropdown-menu tx-13">
 															<!-- Edit Invoice -->
 															<a class="dropdown-item"
-																href=" {{ url('edit_invoice') }}/{{ $invoice->id }}"> Edit Invoice
+																href=" {{ url('edit_invoice') }}/{{ $invoice->id }}"> Edit 
 															</a>
 
 															<!-- Delete Invoice -->
 															<a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
-                                                            data-toggle="modal" data-target="#delete_invoice"> Delete Invoice
+                                                            data-toggle="modal" data-target="#delete_invoice"> Delete 
                                                             </a>
 
 															<!-- Updated Status -->
 															<a class="dropdown-item"
-                                                            href="{{ URL::route('Status_show', [$invoice->id]) }}"> Update</a>
+                                                            href="{{ URL::route('Status_show', [$invoice->id]) }}"> Update
+															</a>
+
+															<!-- Archive Invoice -->
+															<a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
+                                                            data-toggle="modal" data-target="#Transfer_invoice"> Archive
+															</a>
 															</div>	
 													</div>	
 												</td>
@@ -192,6 +198,35 @@ Invoices
         </div>
     </div>
 					<!-- End delete invoice -->
+	<!-- Archive Invoice -->
+	<div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Invoice Archive</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <form action="{{ route('invoices.destroy', 'test') }}" method="post">
+                        {{ method_field('delete') }}
+                        {{ csrf_field() }}
+                </div>
+                <div class="modal-body">
+                    ? Are you sure
+                    <input type="hidden" name="invoice_id" id="invoice_id" value="">
+                    <input type="hidden" name="id_page" id="id_page" value="2">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+	<!-- End Arhice Invoice -->
 				</div>
 				<!-- row closed -->
 			</div>
@@ -226,6 +261,17 @@ Invoices
 <!-- Delete Invoices -->
 <script>
         $('#delete_invoice').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var invoice_id = button.data('invoice_id')
+            var modal = $(this)
+            modal.find('.modal-body #invoice_id').val(invoice_id);
+        })
+
+</script>
+
+<!-- Archive Invoice -->
+<script>
+        $('#Transfer_invoice').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var invoice_id = button.data('invoice_id')
             var modal = $(this)
