@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Notification;
 use App\invoices;
 use App\sections; 
 use App\invoices_details;
@@ -96,6 +97,9 @@ class InvoicesController extends Controller
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
 
+        $user = User::get();
+        $invoices = invoices::latest()->first();
+        Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
 
         session()->flash('Add', 'Invoice Added Succesfully');
         return back();
