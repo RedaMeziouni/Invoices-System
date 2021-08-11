@@ -88,7 +88,7 @@ Invoices
 												<th class="border-bottom-0"> Departement</th>
 												<th class="border-bottom-0">Discount</th>
 												 <th class="border-bottom-0">Tax</th> 
-												<th class="border-bottom-0">T. value</th>
+												<th class="border-bottom-0">T.value</th>
 												<th class="border-bottom-0">Total</th> 
 												<th class="border-bottom-0">Status</th>
 												<th class="border-bottom-0">Description</th>
@@ -152,6 +152,10 @@ Invoices
 															<a class="dropdown-item"
                                                             href="{{ URL::route('Status_show', [$invoice->id]) }}"> Update
 															</a>
+
+															<!-- Print Invoices -->
+															<a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}"> Print
+                                                        	</a>
 
 															<!-- Archive Invoice -->
 															<a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"

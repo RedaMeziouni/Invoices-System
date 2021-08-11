@@ -150,7 +150,12 @@
 
 															<!-- Updated Status -->
 															<a class="dropdown-item"
-                                                            href="{{ URL::route('Status_show', [$invoice->id]) }}"> Update</a>
+                                                            href="{{ URL::route('Status_show', [$invoice->id]) }}"> Update
+															</a>
+
+															<!-- Print Invoices -->
+															<a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}"> Print
+                                                        	</a>
 															</div>	
 													</div>	
 												</td>
