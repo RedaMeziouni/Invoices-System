@@ -63,7 +63,7 @@
 						<ul class="slide-menu">
 
 							@can('Invoices Reports ')
-							<li><a class="slide-item" href="{{ url('/' . $page='cards') }}">Invoices Reports</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='invoices_report') }}">Invoices Reports</a></li>
 							@endcan
 
 							@can('Customer Reports')
