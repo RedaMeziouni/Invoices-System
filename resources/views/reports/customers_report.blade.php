@@ -15,7 +15,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
 @section('title')
-    Invoices Reports
+    Companies Reports
 @stop
 @endsection
 @section('page-header')
@@ -23,7 +23,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto"> Reports </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Invoices Reports
+            <h4 class="content-title mb-0 my-auto">Reports </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Companies Reports
                 </span>
         </div>
     </div>
@@ -55,47 +55,33 @@
 
             <div class="card-header pb-0">
 
-                <form action="/Search_invoices" method="POST" role="search" autocomplete="off">
+                <form action="/Search_customers" method="POST" role="search" autocomplete="off">
                     {{ csrf_field() }}
 
-    
-                    <div class="col-lg-3">
-                        <label class="rdiobox">
-                            <input checked name="rdio" type="radio" value="1" id="type_div"> <span> Search using <b>Invoice Status</b>
-                                </span></label>
-                    </div>
-
-
-                    <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                        <label class="rdiobox"><input name="rdio" value="2" type="radio"><span> Search using <b>Invoice Number</b> 
-                            </span></label>
-                    </div><br><br>
 
                     <div class="row">
 
-                        <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="type">
-                            <p class="mg-b-10"> Select Invoice Status </p><select class="form-control select2" name="type"
-                                required>
-                                <option value="{{ $type ?? 'Select invoice type' }}" selected>
-                                    {{ $type ?? 'Select invoice type' }}
-                                </option>
-
-                                <option value="Paid"> Paid </option>
-                                <option value="unPaid"> UnPaid </option>
-                                <option value="Partial"> Partial </option>
-
+                        <div class="col">
+                            <label for="inputName" class="control-label">Departement</label>
+                            <select name="Section" class="form-control select2" onclick="console.log($(this).val())"
+                                onchange="console.log('change is firing')">
+                                <!--placeholder-->
+                                <option value="" selected disabled> Select Departement</option>
+                                @foreach ($sections as $section)
+                                    <option value="{{ $section->id }}"> {{ $section->section_name }}</option>
+                                @endforeach
                             </select>
-                        </div><!-- col-4 -->
+                        </div>
 
+                        <div class="col-lg-3 mg-t-20 mg-lg-t-0">
+                            <label for="inputName" class="control-label">Company</label>
+                            <select id="product" name="product" class="form-control select2">
+                            </select>
+                        </div>
 
-                        <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="invoice_number">
-                            <p class="mg-b-10"> Please Enter the Invoice Number </p>
-                            <input type="text" class="form-control" id="invoice_number" name="invoice_number">
-
-                        </div><!-- col-4 -->
 
                         <div class="col-lg-3" id="start_at">
-                            <label for="exampleFormControlSelect1"> From </label>
+                            <label for="exampleFormControlSelect1">From Date</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -107,7 +93,7 @@
                         </div>
 
                         <div class="col-lg-3" id="end_at">
-                            <label for="exampleFormControlSelect1"> To </label>
+                            <label for="exampleFormControlSelect1">To Date</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -121,7 +107,7 @@
 
                     <div class="row">
                         <div class="col-sm-1 col-md-1">
-                            <button class="btn btn-primary">Search</button>
+                            <button class="btn btn-primary"> Search </button>
                         </div>
                     </div>
                 </form>
@@ -133,7 +119,7 @@
                         <table id="example" class="table key-buttons text-md-nowrap" style=" text-align: center">
                             <thead>
                                 <tr>
-                                    <th class="border-bottom-0">#</th>
+                                <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">Invoice Number</th>
                                     <th class="border-bottom-0">Invoice Date</th>
                                     <th class="border-bottom-0">Due Date</th>
@@ -145,7 +131,6 @@
                                     <th class="border-bottom-0">Total</th>
                                     <th class="border-bottom-0">Status</th>
                                     <th class="border-bottom-0">Description</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -242,22 +227,27 @@
 
 <script>
     $(document).ready(function() {
+        $('select[name="Section"]').on('change', function() {
+            var SectionId = $(this).val();
+            if (SectionId) {
+                $.ajax({
+                    url: "{{ URL::to('section') }}/" + SectionId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('select[name="product"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="product"]').append('<option value="' +
+                                value + '">' + value + '</option>');
+                        });
+                    },
+                });
 
-        $('#invoice_number').hide();
-
-        $('input[type="radio"]').click(function() {
-            if ($(this).attr('id') == 'type_div') {
-                $('#invoice_number').hide();
-                $('#type').show();
-                $('#start_at').show();
-                $('#end_at').show();
             } else {
-                $('#invoice_number').show();
-                $('#type').hide();
-                $('#start_at').hide();
-                $('#end_at').hide();
+                console.log('AJAX load did not work');
             }
         });
+
     });
 
 </script>

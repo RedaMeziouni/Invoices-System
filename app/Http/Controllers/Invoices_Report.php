@@ -18,12 +18,12 @@ class Invoices_Report extends Controller
     $rdio = $request->rdio;
 
 
- // في حالة البحث بنوع الفاتورة
+ // Case 1 : Using Invoices Status
     
     if ($rdio == 1) {
        
        
- // في حالة عدم تحديد تاريخ
+ // If The User Didn't select the Date
         if ($request->type && $request->start_at =='' && $request->end_at =='') {
             
            $invoices = invoices::select('*')->where('Status','=',$request->type)->get();
@@ -31,7 +31,7 @@ class Invoices_Report extends Controller
            return view('reports.invoices_report',compact('type'))->withDetails($invoices);
         }
         
-        // في حالة تحديد تاريخ استحقاق
+// If the User select the dateق
         else {
            
           $start_at = date($request->start_at);
@@ -47,9 +47,8 @@ class Invoices_Report extends Controller
         
     } 
     
-//====================================================================
-    
-// في البحث برقم الفاتورة
+//  Case 2 : Using the Invoices Number   
+
     else {
         
         $invoices = invoices::select('*')->where('invoice_number','=',$request->invoice_number)->get();
