@@ -63,14 +63,16 @@ Invoices
 						<div class="card mg-b-20">
 							<!-- Add Button -->
 							<div class="card-header pb-0">
-                   
+						@can('Add Invoice')
                         <a href="invoices/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
                                 class="fas fa-plus"></i>&nbsp; Add Invoice</a>
+						@endcan
                 
 
-                   
+						@can('Export EXCEL')
                         <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}"
                             style="color:white"><i class="fas fa-file-download"></i>&nbsp; Export </a>
+						@endcan
                   
 
                 </div>
@@ -139,28 +141,38 @@ Invoices
 														type="button">  <i class="fas fa-caret-down ml-1"></i> Select </button>
 															<div class="dropdown-menu tx-13">
 															<!-- Edit Invoice -->
+															@can('Edit Invoice')
 															<a class="dropdown-item"
 																href=" {{ url('edit_invoice') }}/{{ $invoice->id }}"> Edit 
 															</a>
+															@endcan
 
 															<!-- Delete Invoice -->
+															@can('Delete Invoice')
 															<a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
                                                             data-toggle="modal" data-target="#delete_invoice"> Delete 
                                                             </a>
+															@endcan
 
 															<!-- Updated Status -->
+															@can('Invoice Status')
 															<a class="dropdown-item"
                                                             href="{{ URL::route('Status_show', [$invoice->id]) }}"> Update
 															</a>
+															@endcan
 
 															<!-- Print Invoices -->
+															@can('Print Invoice')
 															<a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}"> Print
                                                         	</a>
+															@endcan
 
 															<!-- Archive Invoice -->
+															@can('Archive Invoice')
 															<a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
                                                             data-toggle="modal" data-target="#Transfer_invoice"> Archive
 															</a>
+															@endcan
 															</div>	
 													</div>	
 												</td>

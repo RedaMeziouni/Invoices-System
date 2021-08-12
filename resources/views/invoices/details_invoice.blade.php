@@ -200,7 +200,7 @@
                                         <div class="tab-pane" id="tab6">
                                             
                                             <div class="card card-statistics">
-                                      
+                                                    @can('Add Attachement')
                                                     <div class="card-body">
                                                         <p class="text-danger">* Format pdf, jpeg ,.jpg , png </p>
                                                         <h5 class="card-title"> Add Attachements</h5>
@@ -221,7 +221,7 @@
                                                                 name="uploadedFile">Save</button>
                                                         </form>
                                                     </div>
-                                                
+                                                    @endcan
                                                 <br>
 
                                                 <div class="table-responsive mt-15">
@@ -258,13 +258,14 @@
                                                                                 class="fas fa-download"></i>&nbsp;
                                                                             Download</a>
 
-                                                                        
+                                                                            @can('Delete Attachement')
                                                                             <button class="btn btn-outline-danger btn-sm"
                                                                                 data-toggle="modal"
                                                                                 data-file_name="{{ $attachment->file_name }}"
                                                                                 data-invoice_number="{{ $attachment->invoice_number }}"
                                                                                 data-id_file="{{ $attachment->id }}"
                                                                                 data-target="#delete_file">Delete</button>
+                                                                            @endcan
                                                                        
 
                                                                     </td>
