@@ -30,7 +30,7 @@ public function create()
 {
 $roles = Role::pluck('name','name')->all();
 
-return view('users.create',compact('roles'));
+return view('users.Add_user',compact('roles'));
 
 }
 /**
@@ -56,7 +56,7 @@ $input['password'] = Hash::make($input['password']);
 $user = User::create($input);
 $user->assignRole($request->input('roles'));
 return redirect()->route('users.index')
-->with('success','تم اضافة المستخدم بنجاح');
+->with('success','User Added successfully');
 }
 
 /**

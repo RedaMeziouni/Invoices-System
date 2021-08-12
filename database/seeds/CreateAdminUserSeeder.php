@@ -17,6 +17,8 @@ public function run()
         'name' => 'Admin', 
         'email' => 'eagle7scms@gmail.com',
         'password' => bcrypt('Eagle7++123'),
+        'roles_name' => ["Admin"],
+        'Status' => 'Active',
         ]);
   
         $role = Role::create(['name' => 'Admin']);

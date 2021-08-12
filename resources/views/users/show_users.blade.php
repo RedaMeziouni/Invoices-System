@@ -21,8 +21,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">المستخدمين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
-                المستخدمين</span>
+            <h4 class="content-title mb-0 my-auto"> Employees </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Employees List </span>
         </div>
     </div>
 </div>
@@ -43,22 +42,22 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="col-sm-1 col-md-2">
-                    @can('اضافة مستخدم')
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">اضافة مستخدم</a>
-                    @endcan
+                    
+                        <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}"> Add Employee </a>
+                    
                 </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive hoverable-table">
-                    <table class="table table-hover" id="example1" data-page-length='50' style=" text-align: center;">
+                    <table class="table table-hover" id="example1" data-page-length='10' style=" text-align: center;">
                         <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">اسم المستخدم</th>
-                                <th class="wd-20p border-bottom-0">البريد الالكتروني</th>
-                                <th class="wd-15p border-bottom-0">حالة المستخدم</th>
-                                <th class="wd-15p border-bottom-0">نوع المستخدم</th>
-                                <th class="wd-10p border-bottom-0">العمليات</th>
+                                <th class="wd-15p border-bottom-0">Full Name</th>
+                                <th class="wd-20p border-bottom-0">Email Adress</th>
+                                <th class="wd-15p border-bottom-0">Employee Status</th>
+                                <th class="wd-15p border-bottom-0">Employee Role</th>
+                                <th class="wd-10p border-bottom-0">Operations</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,7 +67,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        @if ($user->Status == 'مفعل')
+                                        @if ($user->Status == 'Active')
                                             <span class="label text-success d-flex">
                                                 <div class="dot-label bg-success ml-1"></div>{{ $user->Status }}
                                             </span>
@@ -88,17 +87,17 @@
                                     </td>
 
                                     <td>
-                                        @can('تعديل مستخدم')
+                                        
                                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
-                                                title="تعديل"><i class="las la-pen"></i></a>
-                                        @endcan
+                                                title="Edit"><i class="las la-pen"></i></a>
+                                        
 
-                                        @can('حذف مستخدم')
+                                        
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                 data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
-                                                data-toggle="modal" href="#modaldemo8" title="حذف"><i
+                                                data-toggle="modal" href="#modaldemo8" title="Delete"><i
                                                     class="las la-trash"></i></a>
-                                        @endcan
+                                        
                                     </td>
                                 </tr>
                             @endforeach
@@ -115,20 +114,20 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">حذف المستخدم</h6><button aria-label="Close" class="close"
+                    <h6 class="modal-title"> Delete Employee </h6><button aria-label="Close" class="close"
                         data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <form action="{{ route('users.destroy', 'test') }}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
                     <div class="modal-body">
-                        <p>هل انت متاكد من عملية الحذف ؟</p><br>
+                        <p> ? Are you sure </p><br>
                         <input type="hidden" name="user_id" id="user_id" value="">
                         <input class="form-control" name="username" id="username" type="text" readonly>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                        <button type="submit" class="btn btn-danger">تاكيد</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Exit </button>
+                        <button type="submit" class="btn btn-danger"> Save </button>
                     </div>
             </div>
             </form>
