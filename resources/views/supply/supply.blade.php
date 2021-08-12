@@ -77,9 +77,11 @@
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        
+
+                            @can('Add company')
                             <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale"
                                 data-toggle="modal" href="#exampleModal">Add Company </a>
+                            @endcan
                        
                     </div>
                 </div>
@@ -106,17 +108,21 @@
                                         <td>{{ $sup->section->section_name }}</td>
                                         <td>{{ $sup->description }}</td>
                                         <td>
-                                          
+
+                                                @can('Edit company')
                                                 <button class="btn btn-outline-success btn-sm"
                                                     data-name="{{ $sup->supply_name }}" data-pro_id="{{ $sup->id }}"
                                                     data-section_name="{{ $sup->section->section_name }}"
                                                     data-description="{{ $sup->description }}" data-toggle="modal"
                                                     data-target="#edit_Product">Edit</button>
+                                                @endcan
 
-                                        
+
+                                                @can('Delete company')
                                                 <button class="btn btn-outline-danger btn-sm " data-pro_id="{{ $sup->id }}"
                                                     data-product_name="{{ $sup->supply_name }}" data-toggle="modal"
                                                     data-target="#modaldemo9">Delete</button>
+                                                @endcan
                                             
                                         </td>
                                     </tr>
