@@ -87,7 +87,9 @@ Sections
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
 									<!-- Edit Button -->
+								@can('Add departement')
 								<a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal" href="#modaldemo8">Add Departments</a>
+								@endcan
 								</div>
 
 							</div>
@@ -114,16 +116,20 @@ Sections
 													<td>{{ $x->section_name }}</td>
 													<td>{{ $x->description }}</td>
 													<td>
-													
+															
+															@can('Edit departement')
 															<a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
 																data-id="{{ $x->id }}" data-section_name="{{ $x->section_name }}"
 																data-description="{{ $x->description }}" data-toggle="modal"
 																href="#exampleModal2" title="Edit"><i class="las la-pen"></i></a>
-												
+															@endcan
+
+															@can('Delete departement')
 															<a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
 																data-id="{{ $x->id }}" data-section_name="{{ $x->section_name }}"
 																data-toggle="modal" href="#modaldemo9" title="Delete"><i
 																	class="las la-trash"></i></a>
+															@endcan
 														
                                     				</td>
 												</tr>
