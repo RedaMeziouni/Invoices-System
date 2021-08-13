@@ -101,11 +101,15 @@ class InvoicesController extends Controller
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
 
-            $user = User::first();
-            // $user = User::get();
-            // $invoices = invoices::latest()->first();
-            // Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
-            Notification::send($user, new AddInvoice($invoice_id));
+        // Send Notification to Mail
+            // $user = User::first();
+            // Notification::send($user, new AddInvoice($invoice_id));
+
+        // Store Notification Into DB
+            $user = User::get();
+            $invoices = invoices::latest()->first();
+            Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
+
 
         session()->flash('Add', 'Invoice Added Succesfully');
         return back();
