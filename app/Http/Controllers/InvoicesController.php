@@ -102,8 +102,8 @@ class InvoicesController extends Controller
         }
 
         // Send Notification to Mail
-            // $user = User::first();
-            // Notification::send($user, new AddInvoice($invoice_id));
+            $user = User::first();
+            Notification::send($user, new AddInvoice($invoice_id));
 
         // Store Notification Into DB
             $user = User::get();
