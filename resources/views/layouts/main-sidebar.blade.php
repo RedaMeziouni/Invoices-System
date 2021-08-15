@@ -117,7 +117,7 @@
 							@endcan
 
 							@can('Company')
-							<li><a class="slide-item" href="{{ url('/' . $page='supply') }}">Supply Chain</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='supply') }}"> Companies </a></li>
 							@endcan
 						</ul>
 					</li>
